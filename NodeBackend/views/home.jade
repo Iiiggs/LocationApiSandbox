@@ -1,0 +1,22 @@
+doctype html
+
+link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css')
+link(rel='stylesheet' href='css/style.css')
+
+
+script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+script(src="js/script.js")
+
+body
+    h1.text-center= 'AutoFlight Project Page'
+    div.row
+        h3.col-md-3 Count: 
+            div#count= '' + count
+        h3.col-md-3 Avg Alt
+            div#avg-alt= '' +  avgAlt
+        h3.col-md-3 Avg Speed:
+            div#avg-speed= '' +  avgSpeed
+        h3.col-md-3 Avg Loc Acc:
+            div#avg-loc-acc= '' +  avgLocAcc
