@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.dateFormatter.dateFormat = "YYYY-MM-DD"
+        self.dateFormatter.dateFormat = "yyyy-MM-dd 'at' HH:mm:ss"
         
         startMonitoringVisits()
     }
