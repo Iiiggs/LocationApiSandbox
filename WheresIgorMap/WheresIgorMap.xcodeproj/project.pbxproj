@@ -15,6 +15,17 @@
 		2F3095F11A05634E00613A40 /* WheresIgorMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3095F01A05634E00613A40 /* WheresIgorMapTests.swift */; };
 		2F3095FB1A0564FF00613A40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F3095FA1A0564FF00613A40 /* MapKit.framework */; };
 		2F3096001A0573B000613A40 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3095FF1A0573B000613A40 /* extensions.swift */; };
+		2F30960D1A0585F200613A40 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096021A0585F200613A40 /* Contents.json */; };
+		2F30960E1A0585F200613A40 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096031A0585F200613A40 /* Icon-40.png */; };
+		2F30960F1A0585F200613A40 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096041A0585F200613A40 /* Icon-40@2x.png */; };
+		2F3096101A0585F200613A40 /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096051A0585F200613A40 /* Icon-40@3x.png */; };
+		2F3096111A0585F200613A40 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096061A0585F200613A40 /* Icon-60@2x.png */; };
+		2F3096121A0585F200613A40 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096071A0585F200613A40 /* Icon-60@3x.png */; };
+		2F3096131A0585F200613A40 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096081A0585F200613A40 /* Icon-76.png */; };
+		2F3096141A0585F200613A40 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F3096091A0585F200613A40 /* Icon-76@2x.png */; };
+		2F3096151A0585F200613A40 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F30960A1A0585F200613A40 /* Icon-Small.png */; };
+		2F3096161A0585F200613A40 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F30960B1A0585F200613A40 /* Icon-Small@2x.png */; };
+		2F3096171A0585F200613A40 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F30960C1A0585F200613A40 /* Icon-Small@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +52,17 @@
 		2F3095FA1A0564FF00613A40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2F3095FE1A0572E200613A40 /* play.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = play.playground; sourceTree = "<group>"; };
 		2F3095FF1A0573B000613A40 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		2F3096021A0585F200613A40 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		2F3096031A0585F200613A40 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		2F3096041A0585F200613A40 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		2F3096051A0585F200613A40 /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		2F3096061A0585F200613A40 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		2F3096071A0585F200613A40 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		2F3096081A0585F200613A40 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		2F3096091A0585F200613A40 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		2F30960A1A0585F200613A40 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		2F30960B1A0585F200613A40 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		2F30960C1A0585F200613A40 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +106,7 @@
 		2F3095D71A05634E00613A40 /* WheresIgorMap */ = {
 			isa = PBXGroup;
 			children = (
+				2F3096011A0585F200613A40 /* AppIcon.appiconset */,
 				2F3095DA1A05634E00613A40 /* AppDelegate.swift */,
 				2F3095DC1A05634E00613A40 /* ViewController.swift */,
 				2F3095DE1A05634E00613A40 /* Main.storyboard */,
@@ -119,6 +142,24 @@
 				2F3095EF1A05634E00613A40 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F3096011A0585F200613A40 /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				2F3096021A0585F200613A40 /* Contents.json */,
+				2F3096031A0585F200613A40 /* Icon-40.png */,
+				2F3096041A0585F200613A40 /* Icon-40@2x.png */,
+				2F3096051A0585F200613A40 /* Icon-40@3x.png */,
+				2F3096061A0585F200613A40 /* Icon-60@2x.png */,
+				2F3096071A0585F200613A40 /* Icon-60@3x.png */,
+				2F3096081A0585F200613A40 /* Icon-76.png */,
+				2F3096091A0585F200613A40 /* Icon-76@2x.png */,
+				2F30960A1A0585F200613A40 /* Icon-Small.png */,
+				2F30960B1A0585F200613A40 /* Icon-Small@2x.png */,
+				2F30960C1A0585F200613A40 /* Icon-Small@3x.png */,
+			);
+			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +245,17 @@
 				2F3095E01A05634E00613A40 /* Main.storyboard in Resources */,
 				2F3095E51A05634E00613A40 /* LaunchScreen.xib in Resources */,
 				2F3095E21A05634E00613A40 /* Images.xcassets in Resources */,
+				2F30960F1A0585F200613A40 /* Icon-40@2x.png in Resources */,
+				2F30960D1A0585F200613A40 /* Contents.json in Resources */,
+				2F3096161A0585F200613A40 /* Icon-Small@2x.png in Resources */,
+				2F3096141A0585F200613A40 /* Icon-76@2x.png in Resources */,
+				2F3096101A0585F200613A40 /* Icon-40@3x.png in Resources */,
+				2F3096121A0585F200613A40 /* Icon-60@3x.png in Resources */,
+				2F3096151A0585F200613A40 /* Icon-Small.png in Resources */,
+				2F3096131A0585F200613A40 /* Icon-76.png in Resources */,
+				2F30960E1A0585F200613A40 /* Icon-40.png in Resources */,
+				2F3096171A0585F200613A40 /* Icon-Small@3x.png in Resources */,
+				2F3096111A0585F200613A40 /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +471,7 @@
 				2F3095F61A05634E00613A40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F3095F71A05634E00613A40 /* Build configuration list for PBXNativeTarget "WheresIgorMapTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +480,7 @@
 				2F3095F91A05634E00613A40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -76,6 +76,11 @@ app.get('/:collection', function(req, res) { //A
    collectionDriver.findAll(req.params.collection, function(error, objs) { //C
     	  if (error) { res.send(400, error); }
 	      else { 
+            if (req.accepts('application/json'))
+            {
+              res.set('Content-Type','application/json'); //G
+                res.status(200).send(objs); //H
+            }
 	          if (req.accepts('html')) { //E
               objs.forEach(function(obj){
                 // if data has lat and lon present
@@ -89,8 +94,8 @@ app.get('/:collection', function(req, res) { //A
               })
     	          res.render('data',{objects: objs, collection: req.params.collection}); //F
               } else {
-	          res.set('Content-Type','application/json'); //G
-                  res.send(200, objs); //H
+	               res.set('Content-Type','application/json'); //G
+                 res.send(200, objs); //H
               }
          }
    	});

@@ -22,4 +22,20 @@ class Date {
         var date: NSDate! = gregorian.dateFromComponents(c)
         return date
     }
+
+    class func parse(dateStr:String, format:String="yyyy-MM-dd 'at' HH:mm:ss") -> NSDate {
+        var dateFmt = NSDateFormatter()
+        dateFmt.timeZone = NSTimeZone.defaultTimeZone()
+        dateFmt.dateFormat = format
+        return dateFmt.dateFromString(dateStr)!
+    }
 }
+//
+//class Double {
+//    class func parse(doubleString:String) -> Double{
+//        let formatter = NSNumberFormatter()
+//        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+//        let number = formatter.numberFromString(doubleString)!
+//        return number.doubleValue
+//    }
+//}

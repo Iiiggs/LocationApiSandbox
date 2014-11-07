@@ -13,6 +13,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var visits: [VisitCircle] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,54 +23,114 @@ class ViewController: UIViewController, MKMapViewDelegate {
             longitude: -105.1448931572472
         )
         // 2
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.10, 0.10)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
         
-        let visits: [Visit] = [
-            Visit(
-                startDate: Date.from(year: 2014, month: 11, day: 1, hour: 11, minute: 51, second: 11),
-                endDate: Date.from(year: 2014, month: 11, day: 1, hour: 11, minute: 58, second: 37),
-                location: CLLocationCoordinate2D(
-                    latitude: CLLocationDegrees(39.92836096335576),
-                    longitude: CLLocationDegrees(-105.1392876955421)),
-                accuracy:71.90446647609897,
-                name: "Visit 2"),
-            Visit(
-                startDate: Date.from(year: 2014, month: 11, day: 1, hour: 9, minute: 18, second: 33),
-                endDate: Date.from(year: 2014, month: 11, day: 1, hour: 11, minute: 44, second: 25),
-                location: CLLocationCoordinate2D(
-                    latitude: CLLocationDegrees(39.92727129916211),
-                    longitude: CLLocationDegrees(-105.1447143358513)),
-                accuracy:17.80771638969961,
-                name: "Visit 1")
-                            ]
+        getVisits()
         
+    }
+    
+    func getVisits(){
+        // todo: publish latest backend to aws, replace local ip with 54.183.73.223
+        let visitsUrl = "http://192.168.0.102:3000/visits"
+        let url = NSURL(string: visitsUrl)
+        var request = NSMutableURLRequest(URL: url!)
+        request.setValue("application/json", forHTTPHeaderField:"Accepts")
+        request.setValue("application/json", forHTTPHeaderField:"Content-Type")
+
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            // TODO: Implenet Reachability, otherwise you get a fatal error: unexpectedly found nil while unwrapping an Optional value
+            if((response as NSHTTPURLResponse).statusCode == 200)
+            {
+                println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                // convert to json
+                var jsonVisits = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                println(jsonVisits)
+                // parse through visits
+                for visitDict in jsonVisits{
+                    let arrivalDateString = visitDict.objectForKey("arrivalDate") as NSString
+                    let arrivalDate = Date.parse(arrivalDateString)
+                    
+                    let departureDateString = visitDict.objectForKey("departureDate") as NSString
+                    let departureDate = Date.parse(departureDateString)
+                    
+                    let latitude = (visitDict.objectForKey("latitude") as NSString).doubleValue
+                    let longitude = (visitDict.objectForKey("longitude") as NSString).doubleValue
+                    let horizontalAccuracy = (visitDict.objectForKey("horizontalAccuracy") as NSString).doubleValue
+                    let location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+                    
+//                    println("Response from api is a visit: \(arrivalDate) \(departureDate) \(latitude) \(longitude) \(horizontalAccuracy)")
+
+                    var visit = VisitCircle(centerCoordinate: location, radius: horizontalAccuracy)
+                    visit.startDate = arrivalDate
+                    visit.endDate = departureDate
+                    visit.location = location
+                    visit.accuracy = horizontalAccuracy
+                    visit.name = "Points at \(latitude) \(longitude)"
+                    
+                    self.dropVisitsOnMap(visit, mapView: self.mapView)
+                }
+            }
+        })
+        
+        
+    }
+    
+    func addVisitsToMap(){
         for visit in visits {
             dropVisitsOnMap(visit, mapView: mapView)
         }
     }
     
-    func dropVisitsOnMap(visit: Visit, mapView:MKMapView){
+    
+    func dropVisitsOnMap(visit: VisitCircle, mapView:MKMapView){
         let annotation = MKPointAnnotation()
-        annotation.setCoordinate(visit.location)
+        annotation.setCoordinate(visit.location!)
         annotation.title = visit.name
         annotation.subtitle = "Duration: \(visit.formattedDuration), Accuracy: \(visit.accuracy)"
         mapView.addAnnotation(annotation)
+        
+        mapView.addOverlay(visit)
+    }
 
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer!
+    {
+
+        if overlay is VisitCircle {
+            var circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.strokeColor = UIColor.blueColor()
+            circleRenderer.lineWidth = 5
+            circleRenderer.alpha = (overlay as VisitCircle).ageAlpha!
+            return circleRenderer
+        }
+        
+        return nil
     }
     
-    class Visit
+    class VisitCircle: MKCircle
     {
-        var location: CLLocationCoordinate2D;
-        var startDate: NSDate
-        var endDate: NSDate
-        var name: NSString
-        var accuracy: Double
-        
+        var location: CLLocationCoordinate2D?
+        var startDate: NSDate?
+        var endDate: NSDate?
+        var name: NSString?
+        var accuracy: Double?
+        var ageAlpha: CGFloat? {
+            get{
+                let now = NSDate()
+                let then = startDate
+                
+                let age = now.timeIntervalSinceDate(then!)
+                
+                let alpha = 1.0 - (age / (86400 * 4)) // completely clear after 4 days day (4 X 86,400 seconds)
+                
+                return CGFloat(alpha)
+            }
+        }
+
         var duration: NSTimeInterval {
             get{
-                return endDate.timeIntervalSinceDate(startDate)
+                return endDate!.timeIntervalSinceDate(startDate!)
             }
         }
         
@@ -79,14 +141,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             }
         }
         
-        init(startDate: NSDate, endDate: NSDate, location: CLLocationCoordinate2D, accuracy: Double, name: NSString)
-        {
-            self.startDate = startDate
-            self.endDate = endDate
-            self.location = location
-            self.name = name
-            self.accuracy = accuracy
-        }
     }
 
     override func didReceiveMemoryWarning() {
